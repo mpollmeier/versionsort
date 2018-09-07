@@ -1,27 +1,22 @@
 language: scala
 jdk: oraclejdk8
-
 before_install:
-- openssl aes-256-cbc -K $encrypted_d8ab755c5150_key -iv $encrypted_d8ab755c5150_iv
+- openssl aes-256-cbc -K $encrypted_2040e356438b_key -iv $encrypted_2040e356438b_iv
   -in private-key.pem.enc -out private-key.pem -d
 - git fetch --tags
-
 install:
 - gpg --import private-key.pem
 - gpg --list-keys
-
 stages:
 - name: test
 - name: release
   if: branch = master
-
 jobs:
   include:
-    - stage: test
-      script: sbt +test
-    - stage: release
-      script: sbt ci-release-sonatype
-
+  - stage: test
+    script: sbt +test
+  - stage: release
+    script: sbt ci-release-sonatype
 before_cache:
 - du -h -d 1 $HOME/.ivy2/cache
 - du -h -d 2 $HOME/.sbt/
