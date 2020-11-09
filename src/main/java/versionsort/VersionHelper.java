@@ -8,7 +8,7 @@ public class VersionHelper {
       * Use this instead of String.compareTo() for a non-lexicographical 
       * comparison that works for version strings. e.g. "1.10".compareTo("1.6").
       * 
-      * @note It does not work if "1.10" is supposed to be equal to "1.10.0".
+      * note: It does not work if "1.10" is supposed to be equal to "1.10.0".
       * 
       * @param str1 a string of ordinal numbers separated by decimal points. 
       * @param str2 a string of ordinal numbers separated by decimal points.
@@ -16,7 +16,7 @@ public class VersionHelper {
       *         The result is a positive integer if str1 is _numerically_ greater than str2. 
       *         The result is zero if the strings are _numerically_ equal.
       *
-      * @note this is copy paste driven development
+      * note: this is copy paste driven development
       * originally posted by Alex Gitelman on https://stackoverflow.com/a/6702029/452762
       */
     public static int compare(String str1, String str2) {
