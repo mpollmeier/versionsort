@@ -1,6 +1,5 @@
 name := "versionsort"
 organization := "com.michaelpollmeier"
-enablePlugins(GitVersioning)
 
 libraryDependencies += "org.scalatest" %% "scalatest" % "3.0.3" % Test
 

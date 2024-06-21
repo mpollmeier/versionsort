@@ -1,1 +1,3 @@
-addSbtPlugin("io.shiftleft" % "sbt-ci-release-early" % "2.0.13")
+addSbtPlugin("org.xerial.sbt" % "sbt-sonatype" % "3.10.0")
+addSbtPlugin("com.github.sbt" % "sbt-pgp" % "2.2.1")
+addSbtPlugin("com.github.sbt" % "sbt-dynver" % "5.0.1")
