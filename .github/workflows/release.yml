@@ -1,8 +1,8 @@
 name: Release from branch
 on:
   push:
-    branches: [sbt-sonatype-test]
-    tags: ["v*"]
+    branches-ignore: [master, main]
+    tags: ["v0.*"]
 jobs:
   release:
     runs-on: ubuntu-latest
