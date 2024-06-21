@@ -1,7 +1,6 @@
 name: Release from branch
 on:
   push:
-    branches-ignore: [master, main]
     tags: ["v0.*"]
 jobs:
   release:
