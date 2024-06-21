@@ -27,6 +27,17 @@ class VersionHelperTest extends WordSpec with Matchers {
     compare("1.0", "0.9.2") shouldBe 1
     compare("1.10", "1.6") shouldBe 1
     compare("1.10.0.0.0.1", "1.10") shouldBe 1
+
+    compare("1.0-RC3", "1.0-RC2") shouldBe 1
+    compare("1.0", "1.0-RC1") shouldBe 1
+    compare(
+      "0.1.65+0-ce17edb4+20230904-1054",
+      "0.1.65+0-ce17edb4+20230904-1053"
+    ) shouldBe 1
+    compare(
+      "0.1.65+0-ce17edb4+20230904-1052",
+      "0.1.64+0-ce17edb4+20230904-1053"
+    ) shouldBe 1
   }
 
   "sort scala list" in {
