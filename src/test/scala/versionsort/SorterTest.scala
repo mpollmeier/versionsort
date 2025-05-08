@@ -27,6 +27,13 @@ class VersionHelperTest extends WordSpec with Matchers {
     compare("1.0", "0.9.2") shouldBe 1
     compare("1.10", "1.6") shouldBe 1
     compare("1.10.0.0.0.1", "1.10") shouldBe 1
+
+    compare("1.5.0", "1.5.0-SNAPSHOT") shouldBe 1
+    compare("1.5.0", "1.5.0-alpha") shouldBe 1
+    compare("1.5.0-alpha", "1.5.0-SNAPSHOT") should be > 1
+    compare("1.5", "1.6-SNAPSHOT") shouldBe -1
+    compare("1.7", "1.7a") shouldBe -1
+    compare("1.7b", "1.7a") shouldBe 1
   }
 
   "sort scala list" in {
