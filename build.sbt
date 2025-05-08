@@ -6,11 +6,9 @@ libraryDependencies += "org.scalatest" %% "scalatest" % "3.0.3" % Test
 autoScalaLibrary := false
 crossPaths := false
 
-ThisBuild / scalacOptions ++= Seq(
-  "-release", "8",
-)
+scalacOptions ++= Seq("-release", "8")
 
-ThisBuild / javacOptions ++= Seq(
+Compile/compile/javacOptions ++= Seq(
   "-g", // debug symbols
   "--release", "8"
 )

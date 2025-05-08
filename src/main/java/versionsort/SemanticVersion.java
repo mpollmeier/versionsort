@@ -2,6 +2,19 @@ package versionsort;
   
 import java.util.*;
 
+/**
+ * A class that parses and compares semantic versions, supporting both
+ * standard semantic versioning (major.minor.patch) and extensions like:
+ * <ul>
+ *   <li>Pre-release versions (e.g. {@code 1.0.0-alpha}, {@code 1.0.0-SNAPSHOT})</li>
+ *   <li>Post-release suffixes (e.g. {@code 1.0.0a})</li>
+ *   <li>Mixed alphanumeric segments</li>
+ * </ul>
+ * <p>
+ * Versions are compared based on core numeric parts first,
+ * then pre-release identifiers (lower than the release),
+ * and finally post-release suffixes (greater than the base release).
+ */
 public class SemanticVersion implements Comparable<SemanticVersion> {
     private final String original;
     private final List<String> coreParts;
@@ -9,6 +22,11 @@ public class SemanticVersion implements Comparable<SemanticVersion> {
     private final List<String> postReleaseParts;
     private final boolean isPreRelease;
 
+    /**
+     * Constructs a {@code SemanticVersion} by parsing the given version string.
+     *
+     * @param version The version string (e.g., "1.0.0", "1.0.0-alpha", "1.0.0a")
+     */
     public SemanticVersion(String version) {
         this.original = version;
 
@@ -26,6 +44,13 @@ public class SemanticVersion implements Comparable<SemanticVersion> {
         this.preReleaseParts = isPreRelease ? Arrays.asList(extra.split("\\.")) : Collections.emptyList();
     }
 
+    /**
+     * Compares this version to another {@code SemanticVersion}.
+     *
+     * @param other The other version to compare against
+     * @return a negative integer, zero, or a positive integer as this version
+     *         is less than, equal to, or greater than the specified version
+     */
     @Override
     public int compareTo(SemanticVersion other) {
         int maxCore = Math.max(this.coreParts.size(), other.coreParts.size());
@@ -37,7 +62,7 @@ public class SemanticVersion implements Comparable<SemanticVersion> {
             if (cmp != 0) return cmp;
         }
 
-        // Handle pre-release vs normal version
+        // Handle pre-release comparison
         if (this.isPreRelease && !other.isPreRelease) return -1;
         if (!this.isPreRelease && other.isPreRelease) return 1;
         if (this.isPreRelease && other.isPreRelease) {
@@ -45,10 +70,21 @@ public class SemanticVersion implements Comparable<SemanticVersion> {
             if (cmp != 0) return cmp;
         }
 
-        // Now check post-release (e.g. "1.0.0a")
+        // Handle post-release comparison
         return compareParts(this.postReleaseParts, other.postReleaseParts);
     }
 
+    /**
+     * Returns the original version string.
+     *
+     * @return the version as a string
+     */
+    @Override
+    public String toString() {
+        return original;
+    }
+
+    // Helper method to compare a list of alphanumeric version parts
     private int compareParts(List<String> a, List<String> b) {
         int max = Math.max(a.size(), b.size());
         for (int i = 0; i < max; i++) {
@@ -73,6 +109,7 @@ public class SemanticVersion implements Comparable<SemanticVersion> {
         return 0;
     }
 
+    // Helper method to parse a version component to integer
     private int parsePart(String part) {
         try {
             return Integer.parseInt(part);
@@ -81,29 +118,4 @@ public class SemanticVersion implements Comparable<SemanticVersion> {
         }
     }
 
-    @Override
-    public String toString() {
-        return original;
-    }
-
-    // Example usage
-    public static void main(String[] args) {
-        List<SemanticVersion> versions = Arrays.asList(
-            new SemanticVersion("1.0.0"),
-            new SemanticVersion("1.0.0a"),
-            new SemanticVersion("1.0.0-SNAPSHOT"),
-            new SemanticVersion("1.0.0-alpha"),
-            new SemanticVersion("1.0.0-beta"),
-            new SemanticVersion("1.0.1"),
-            new SemanticVersion("2.0.0"),
-            new SemanticVersion("1.0.0-rc1"),
-            new SemanticVersion("1.0.0-alpha.1")
-        );
-
-        Collections.sort(versions);
-
-        for (SemanticVersion v : versions) {
-            System.out.println(v);
-        }
-    }
 }

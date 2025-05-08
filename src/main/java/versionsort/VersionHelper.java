@@ -15,10 +15,8 @@ public class VersionHelper {
       * - follows semver precedence rules with extra flexibility
       * - "1.10" does not equal "1.10.0"
       * 
-      * @param str1 a string of ordinal numbers separated by decimal points. 
-      * @param str2 a string of ordinal numbers separated by decimal points.
-      * @return The result is a negative integer if `version1 < version 2`
-      *         The result is a positive integer if `version1 > version 2`
+      * @return The result is a negative integer if version1 lt version 2
+      *         The result is a positive integer if version1 gt version 2
       *         The result is zero if the strings are numerically equal.
       **/
     public static int compare(String version1, String version2) {
