@@ -1,12 +1,19 @@
 name := "versionsort"
 organization := "com.michaelpollmeier"
-enablePlugins(GitVersioning)
-
 libraryDependencies += "org.scalatest" %% "scalatest" % "3.0.3" % Test
 
 // make this a pure java build
 autoScalaLibrary := false
 crossPaths := false
+
+ThisBuild / scalacOptions ++= Seq(
+  "-release", "8",
+)
+
+ThisBuild / javacOptions ++= Seq(
+  "-g", // debug symbols
+  "--release", "8"
+)
 
 homepage := Some(url("https://github.com/mpollmeier/versionsort"))
 scmInfo := Some(ScmInfo(
