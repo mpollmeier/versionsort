@@ -1,6 +1,6 @@
 # versionsort
 
-Compares two version strings, similar to `sort --version-sort`.
+Compares two version strings, similar to `sort --version-sort`
 
 * handles missing patch/minor (defaults to 0)
 * orders SNAPSHOT and pre-releases correctly
@@ -15,7 +15,7 @@ Compares two version strings, similar to `sort --version-sort`.
 * The result is zero if the strings are numerically equal.
 
 Usage:
-```
+```scala
  // build.sbt:
 libraryDependencies += "com.michaelpollmeier" % "versionsort" % "1.0.14"
 
