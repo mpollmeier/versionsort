@@ -2,7 +2,7 @@ package versionsort
 
 import org.scalatest._
 
-class VersionHelperTest extends WordSpec with Matchers {
+class Test extends WordSpec with Matchers {
 
   "compare versions" in {
     import VersionHelper.compare
