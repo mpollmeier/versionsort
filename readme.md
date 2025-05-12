@@ -42,7 +42,7 @@ versionsort.VersionHelper.compare("1.10.0.0.0.1", "1.10") // 1
 
 versionsort.VersionHelper.compare("1.5.0", "1.5.0-SNAPSHOT") // 1
 versionsort.VersionHelper.compare("1.5.0", "1.5.0-alpha") // 1
-versionsort.VersionHelper.compare("1.5.0-alpha", "1.5.0-SNAPSHOT") should be > 1
+versionsort.VersionHelper.compare("1.5.0-alpha", "1.5.0-SNAPSHOT") // > 1
 versionsort.VersionHelper.compare("1.5", "1.6-SNAPSHOT") // -1
 versionsort.VersionHelper.compare("1.7", "1.7a") // -1
 versionsort.VersionHelper.compare("1.7b", "1.7a") // 1
